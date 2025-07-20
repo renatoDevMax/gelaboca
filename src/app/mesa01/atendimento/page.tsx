@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
+import { IoMdSend } from 'react-icons/io';
 
 interface Message {
   id: string;
@@ -289,9 +290,7 @@ function AtendimentoContent() {
             disabled={!inputMessage.trim() || isLoading}
             className="px-6 py-3 bg-white text-pink-600 rounded-2xl font-semibold hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 active:scale-95"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
+            <IoMdSend className="w-5 h-5" />
           </button>
         </div>
       </div>
