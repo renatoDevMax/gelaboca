@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
 
@@ -15,7 +15,7 @@ interface Message {
   };
 }
 
-export default function AtendimentoPage() {
+function AtendimentoContent() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -296,5 +296,24 @@ export default function AtendimentoPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-pink-600 to-pink-700 flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-white text-lg">Carregando GelinhIA...</p>
+      </div>
+    </div>
+  );
+}
+
+export default function AtendimentoPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <AtendimentoContent />
+    </Suspense>
   );
 } 
